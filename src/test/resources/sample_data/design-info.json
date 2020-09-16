@@ -2,6 +2,10 @@
   "sampleData": {
     "23482f98-ce32-4bcd-abe8-311be4e391c7": {
       "attributes": "sample_data/object.dwl"
+    },
+    "97b8f4b8-8546-473a-9c06-60f8e827a5df": {
+      "vars-numberString": "sample_data/defaultstringtype.dwl",
+      "attributes": "sample_data/object_1.dwl"
     }
   }
 }
