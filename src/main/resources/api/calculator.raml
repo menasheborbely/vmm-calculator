@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: calculator
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/eeec1e6e-3e60-4569-b5fe-249bb484f04f/
+version: "0.1"
+protocols:
+  - HTTPS
+/add:
+  /{numbers}:
+    get:
+      responses:
+        "200":
+          body:
+            text/plain:
+              example: 1
+              type: number
+              format: int
+
