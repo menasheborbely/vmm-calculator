@@ -28,18 +28,18 @@ pipeline {
         APP_NAME = 'vmm-calculator'
       }
       steps {
-            sh "echo %DEPLOY_CREDS_USR%"
-            sh "echo %DEPLOY_CREDS_PSW%"
-            sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"%MULE_VERSION%\" -Danypoint.username=\"%DEPLOY_CREDS_USR%\" -Danypoint.password=\"%DEPLOY_CREDS_PSW%\" -Dcloudhub.app=\"%APP_NAME%\" -Dcloudhub.environment=\"%ENVIRONMENT%\" -Dcloudhub.bg=\"%BG%\" -Dcloudhub.worker=\"%WORKER%\""
+            sh "echo $DEPLOY_CREDS_USR"
+            sh "echo $DEPLOY_CREDS_PSW"
+            sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"$MULE_VERSION\" -Danypoint.username=\"$DEPLOY_CREDS_USR\" -Danypoint.password=\"$DEPLOY_CREDS_PSW\" -Dcloudhub.app=\"$APP_NAME\" -Dcloudhub.environment=\"$ENVIRONMENT\" -Dcloudhub.bg=\"$BG\" -Dcloudhub.worker=\"$WORKER\""
       }
     }
     stage('Deploy Production') {
       environment {
         ENVIRONMENT = 'Production'
-        APP_NAME = '<API-NAME>'
+        APP_NAME = 'vmm-calculator-prod'
       }
       steps {
-            sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"%MULE_VERSION%\" -Danypoint.username=\"%DEPLOY_CREDS_USR%\" -Danypoint.password=\"%DEPLOY_CREDS_PSW%\" -Dcloudhub.app=\"%APP_NAME%\" -Dcloudhub.environment=\"%ENVIRONMENT%\" -Dcloudhub.bg=\"%BG%\" -Dcloudhub.worker=\"%WORKER%\""
+            sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"$MULE_VERSION\" -Danypoint.username=\"$DEPLOY_CREDS_USR\" -Danypoint.password=\"$DEPLOY_CREDS_PSW\" -Dcloudhub.app=\"$APP_NAME\" -Dcloudhub.environment=\"$ENVIRONMENT\" -Dcloudhub.bg=\"$BG\" -Dcloudhub.worker=\"$WORKER\""
       }
     }
   }
