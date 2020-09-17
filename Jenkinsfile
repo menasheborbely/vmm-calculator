@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Deploy Production') {
       environment {
-        ENVIRONMENT = 'Production'
+        ENVIRONMENT = 'Sandbox'
         APP_NAME = 'vmm-calculator-prod'
       }
       steps {
