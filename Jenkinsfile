@@ -11,7 +11,6 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-      		sh 'printenv'
       		sh 'mvn clean'
             sh 'mvn -B -U -e -V -DskipTests package'
       }
@@ -30,7 +29,7 @@ pipeline {
       }
       when {
     	expression {
-        	return env.BRANCH_NAME == 'develop';
+        	return env.GIT_BRANCH == 'origin/develop';
         }
       }
       steps {
@@ -44,7 +43,7 @@ pipeline {
       }
       when {
     	expression {
-        	return env.BRANCH_NAME == 'master';
+        	return env.GIT_BRANCH == 'origin/master';
         }
       }
       steps {
