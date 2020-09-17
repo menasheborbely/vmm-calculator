@@ -27,7 +27,11 @@ pipeline {
         ENVIRONMENT = 'Sandbox'
         APP_NAME = 'vmm-calculator'
       }
-      when { branch 'develop' }
+      when {
+    	expression {
+        	return env.BRANCH_NAME == 'develop';
+        }
+      }
       steps {
             sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"$MULE_VERSION\" -Danypoint.username=\"$DEPLOY_CREDS_USR\" -Danypoint.password=\"$DEPLOY_CREDS_PSW\" -Dcloudhub.app=\"$APP_NAME\" -Dcloudhub.environment=\"$ENVIRONMENT\" -Dcloudhub.bg=\"$BG\" -Dcloudhub.worker=\"$WORKER\""
       }
@@ -37,7 +41,11 @@ pipeline {
         ENVIRONMENT = 'Sandbox'
         APP_NAME = 'vmm-calculator-prod'
       }
-      when { branch 'master' }
+      when {
+    	expression {
+        	return env.BRANCH_NAME == 'master';
+        }
+      }
       steps {
             sh "mvn -U -V -e -B -DskipTests deploy -DmuleDeploy -Dmule.version=\"$MULE_VERSION\" -Danypoint.username=\"$DEPLOY_CREDS_USR\" -Danypoint.password=\"$DEPLOY_CREDS_PSW\" -Dcloudhub.app=\"$APP_NAME\" -Dcloudhub.environment=\"$ENVIRONMENT\" -Dcloudhub.bg=\"$BG\" -Dcloudhub.worker=\"$WORKER\""
       }
