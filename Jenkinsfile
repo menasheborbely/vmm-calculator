@@ -11,6 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+      		sh 'printenv'
       		sh 'mvn clean'
             sh 'mvn -B -U -e -V -DskipTests package'
       }
