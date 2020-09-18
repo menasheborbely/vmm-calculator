@@ -145,4 +145,20 @@ multiply (numbers, 1)]]></ee:set-payload>
             </ee:message>
         </ee:transform>
     </flow>
+    <flow name="get:\sub\(from)\(what):calculator-config">
+        <ee:transform>
+            <ee:variables>
+                <ee:set-variable variableName="from"><![CDATA[attributes.uriParams.'from' as Number]]></ee:set-variable>
+                <ee:set-variable variableName="what"><![CDATA[attributes.uriParams.'what' as Number]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+vars.from - vars.what]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
 </mule>

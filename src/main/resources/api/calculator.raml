@@ -24,4 +24,13 @@ protocols:
               example: 1
               type: number
               format: int
-
+/sub:
+  /{from}/{what}:
+    get:
+      responses:
+        "200":
+          body:
+            text/plain:
+              example: 1
+              type: number
+              format: int
